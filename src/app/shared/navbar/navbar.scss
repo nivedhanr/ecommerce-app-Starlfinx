@@ -1,0 +1,100 @@
+.navbar {
+
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  
+    padding: 1rem 2rem;
+  
+    background: linear-gradient(
+      135deg,
+      #312e81,
+      #4338ca
+    );
+  
+    color: white;
+  
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.15);
+  
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  
+  }
+  
+  .navbar-logo {
+  
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  
+  }
+  
+  .logo-icon {
+  
+    font-size: 1.8rem;
+  
+  }
+  
+  .logo-text {
+  
+    font-size: 1.4rem;
+    font-weight: 700;
+  
+  }
+  
+  .navbar-links {
+  
+    display: flex;
+    gap: 1.5rem;
+    margin-right: auto;
+  }
+  
+  .navbar-links a {
+  
+    text-decoration: none;
+    color: white;
+  
+    font-weight: 500;
+  
+    transition: 0.3s;
+  
+  }
+  
+  .navbar-links a:hover {
+  
+    color: #c7d2fe;
+  
+  }
+  
+  .navbar-auth a,
+  .navbar-auth button {
+  
+    border: none;
+  
+    background: white;
+    color: #312e81;
+  
+    padding:
+      0.6rem
+      1rem;
+  
+    border-radius: 8px;
+  
+    font-weight: 600;
+  
+    cursor: pointer;
+  
+    text-decoration: none;
+  
+    transition: 0.3s;
+  
+  }
+  
+  .navbar-auth a:hover,
+  .navbar-auth button:hover {
+  
+    background: #e0e7ff;
+  
+  }

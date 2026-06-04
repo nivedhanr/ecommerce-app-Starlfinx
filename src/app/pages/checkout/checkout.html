@@ -1,0 +1,254 @@
+<!-- <h2>Order Summary</h2>
+
+@if(cartItems().length === 0){
+
+<p>Your cart is empty.</p>
+
+} @else {
+
+<div>
+
+    @for(item of cartItems(); track item.product.id){
+
+    <div>
+
+        <h4>{{ item.product.title }}</h4>
+
+        <p>
+            Quantity:
+            {{ item.quantity }}
+        </p>
+
+        <p>
+            Price:
+            ₹{{ item.product.price }}
+        </p>
+
+        <p>
+            Item Total:
+            ₹{{ item.product.price * item.quantity }}
+        </p>
+
+        <hr>
+
+    </div>
+
+    }
+
+</div>
+
+<div class="coupon-section">
+
+    <h3>Apply Coupon</h3>
+
+    <input #couponCode type="text" placeholder="Enter coupon code">
+
+    <button type="button" (click)="applyCoupon(couponCode.value)">
+
+        Apply
+
+    </button>
+
+    @if (couponMessage()) {
+
+    <p>
+        {{ couponMessage() }}
+    </p>
+
+    }
+
+</div>
+
+<div>
+
+    <h3>Price Details</h3>
+
+    <p>
+        Subtotal:
+        ₹{{ subtotal().toFixed(2) }}
+    </p>
+
+    <p>
+        GST (18%):
+        ₹{{ tax().toFixed(2) }}
+    </p>
+
+    <p>
+        Discount:
+        ₹{{ discount().toFixed(2) }}
+    </p>
+
+    <p>
+        <strong>
+            Final Total:
+            ₹{{ total().toFixed(2) }}
+        </strong>
+    </p>
+
+</div>
+
+} -->
+
+<div class="checkout-page">
+
+    <div class="checkout-container">
+  
+      <h1 class="checkout-title">
+        Checkout
+      </h1>
+  
+      <p class="checkout-subtitle">
+        Review your order before placing it
+      </p>
+  
+      @if(cartItems().length === 0){
+  
+      <div class="empty-checkout">
+  
+        <h2>Your cart is empty 🛒</h2>
+  
+        <p>
+          Add some products before checkout.
+        </p>
+  
+      </div>
+  
+      } @else {
+  
+      <div class="checkout-layout">
+  
+        <div class="checkout-items">
+  
+          <h2>
+            Order Items
+          </h2>
+  
+          @for(item of cartItems(); track item.product.id){
+  
+          <div class="checkout-item">
+  
+            <div>
+  
+              <h4>
+                {{ item.product.title }}
+              </h4>
+  
+              <p>
+                Quantity:
+                {{ item.quantity }}
+              </p>
+  
+            </div>
+  
+            <div class="item-price">
+  
+              ₹{{ (item.product.price * item.quantity).toFixed(2) }}
+  
+            </div>
+  
+          </div>
+  
+          }
+  
+        </div>
+  
+        <div class="checkout-summary">
+  
+          <h2>
+            Order Summary
+          </h2>
+  
+          <div class="coupon-section">
+  
+            <h3>
+              Apply Coupon
+            </h3>
+  
+            <div class="coupon-input">
+  
+              <input
+                #couponCode
+                type="text"
+                placeholder="Enter coupon code">
+  
+              <button
+                type="button"
+                (click)="applyCoupon(couponCode.value)">
+  
+                Apply
+  
+              </button>
+  
+            </div>
+  
+            @if (couponMessage()) {
+  
+            <p class="coupon-message">
+              {{ couponMessage() }}
+            </p>
+  
+            }
+  
+          </div>
+  
+          <hr>
+  
+          <div class="summary-row">
+  
+            <span>Subtotal</span>
+  
+            <span>
+              ₹{{ subtotal().toFixed(2) }}
+            </span>
+  
+          </div>
+  
+          <div class="summary-row">
+  
+            <span>GST (18%)</span>
+  
+            <span>
+              ₹{{ tax().toFixed(2) }}
+            </span>
+  
+          </div>
+  
+          <div class="summary-row">
+  
+            <span>Discount</span>
+  
+            <span>
+              ₹{{ discount().toFixed(2) }}
+            </span>
+  
+          </div>
+  
+          <hr>
+  
+          <div class="summary-total">
+  
+            <span>Total</span>
+  
+            <span>
+              ₹{{ total().toFixed(2) }}
+            </span>
+  
+          </div>
+  
+          <button
+            class="place-order-btn"
+            type="button">
+  
+            Place Order
+  
+          </button>
+  
+        </div>
+  
+      </div>
+  
+      }
+  
+    </div>
+  
+  </div>

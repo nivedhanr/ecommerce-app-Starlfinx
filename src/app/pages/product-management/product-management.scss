@@ -1,0 +1,217 @@
+.product-management-page {
+
+    min-height: 100vh;
+  
+    background:
+      linear-gradient(
+        135deg,
+        #f0f9ff 0%,
+        oklch(0.4 0.06 270.99) 100%
+      );
+  
+    padding: 2rem;
+  
+  }
+  
+  .page-header {
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    margin-bottom: 2rem;
+  
+  }
+  
+  .page-header h1 {
+  
+    color: rgb(11, 9, 9);
+  
+    font-size: 2rem;
+    font-weight: 700;
+  
+    margin-bottom: 0.3rem;
+  
+  }
+  
+  .page-header p {
+  
+    color: #dbeafe;
+  
+  }
+  
+  .add-btn {
+  
+    border: none;
+  
+    background: #10b981;
+    color: white;
+  
+    padding:
+      0.9rem
+      1.5rem;
+  
+    border-radius: 10px;
+  
+    cursor: pointer;
+  
+    font-weight: 600;
+  
+    transition: 0.3s;
+  
+  }
+  
+  .add-btn:hover {
+  
+    background: #059669;
+  
+  }
+  
+  .product-table {
+  
+    background: white;
+  
+    border-radius: 20px;
+  
+    overflow: hidden;
+  
+    box-shadow:
+      0 10px 30px rgba(0,0,0,0.15);
+  
+  }
+  
+  .table-header {
+  
+    display: grid;
+  
+    grid-template-columns:
+      3fr
+      2fr
+      1fr
+      2fr;
+  
+    background: #312e81;
+  
+    color: white;
+  
+    padding: 1rem;
+  
+    font-weight: 600;
+  
+  }
+  
+  .table-row {
+  
+    display: grid;
+  
+    grid-template-columns:
+      3fr
+      2fr
+      1fr
+      2fr;
+  
+    padding: 1rem;
+  
+    align-items: center;
+  
+    border-bottom:
+      1px solid #e5e7eb;
+  
+  }
+  
+  .product-name {
+  
+    font-weight: 600;
+  
+    color: #1e293b;
+  
+  }
+  
+  .price {
+  
+    font-weight: 700;
+  
+    color: #059669;
+  
+  }
+  
+  .actions {
+  
+    display: flex;
+  
+    gap: 0.75rem;
+  
+  }
+  
+  .edit-btn {
+  
+    border: none;
+  
+    background: #3b82f6;
+    color: white;
+  
+    padding:
+      0.5rem
+      1rem;
+  
+    border-radius: 8px;
+  
+    cursor: pointer;
+  
+  }
+  
+  .edit-btn:hover {
+  
+    background: #2563eb;
+  
+  }
+  
+  .delete-btn {
+  
+    border: none;
+  
+    background: #ef4444;
+    color: white;
+  
+    padding:
+      0.5rem
+      1rem;
+  
+    border-radius: 8px;
+  
+    cursor: pointer;
+  
+  }
+  
+  .delete-btn:hover {
+  
+    background: #dc2626;
+  
+  }
+  
+  @media (max-width: 768px) {
+  
+    .page-header {
+  
+      flex-direction: column;
+      gap: 1rem;
+  
+      align-items: flex-start;
+  
+    }
+  
+    .table-header {
+  
+      display: none;
+  
+    }
+  
+    .table-row {
+  
+      grid-template-columns: 1fr;
+  
+      gap: 0.75rem;
+  
+    }
+  
+  }

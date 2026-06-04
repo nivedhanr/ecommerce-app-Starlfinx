@@ -1,0 +1,108 @@
+<!-- <h2>
+    Product Management
+</h2>
+
+<button routerLink="/product-form"> Add Product </button>
+<hr>
+@for (product of products(); track product.id) {
+
+<div appHighlight>
+    <h3>{{ product.title }}</h3>
+
+    <p>₹ {{ product.price | price }}</p>
+
+    <p>{{ product.category }}</p>
+
+    <button [routerLink]="['/product-form', product.id]">Edit</button>
+    <button (click)="deleteProduct(product.id)">Delete</button>
+    <hr>
+</div>
+
+} -->
+
+<div class="product-management-page">
+
+    <div class="page-header">
+  
+      <div>
+  
+        <h1>Product Management</h1>
+  
+        <p>
+          Manage products in the store
+        </p>
+  
+      </div>
+  
+      <button
+        class="add-btn"
+        routerLink="/product-form">
+  
+        + Add Product
+  
+      </button>
+  
+    </div>
+  
+    <div class="product-table">
+  
+      <div class="table-header">
+  
+        <span>Product</span>
+        <span>Category</span>
+        <span>Price</span>
+        <span>Actions</span>
+  
+      </div>
+  
+      @for (product of products(); track product.id) {
+  
+      <div
+        class="table-row"
+        appHighlight>
+  
+        <div class="product-name">
+  
+          {{ product.title }}
+  
+        </div>
+  
+        <div>
+  
+          {{ product.category }}
+  
+        </div>
+  
+        <div class="price">
+  
+          {{ product.price | price }}
+  
+        </div>
+  
+        <div class="actions">
+  
+          <button
+            class="edit-btn"
+            [routerLink]="['/product-form', product.id]">
+  
+            Edit
+  
+          </button>
+  
+          <button
+            class="delete-btn"
+            (click)="deleteProduct(product.id)">
+  
+            Delete
+  
+          </button>
+  
+        </div>
+  
+      </div>
+  
+      }
+  
+    </div>
+  
+  </div>

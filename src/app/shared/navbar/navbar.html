@@ -1,0 +1,81 @@
+<!-- <nav>
+    <a routerLink="/products"> Products </a>
+    |
+    <a routerLink="/cart"> Cart </a>
+    |
+    <a routerLink="/checkout"> Checkout </a>
+    |
+    <a routerLink="/product-management">Product Management</a>
+
+    @if (!isAuthenticated()) {
+    |
+    <a routerLink="/login">
+        Login
+    </a>
+
+    } @else {
+    |
+    <button type="button" (click)="logout()">
+        Logout </button>
+    }
+
+</nav>
+<hr> -->
+
+<nav class="navbar">
+
+    <div class="navbar-logo">
+  
+      <span class="logo-icon">
+        🛒
+      </span>
+  
+      <span class="logo-text">
+        Starlfinx Store
+      </span>
+  
+    </div>
+  
+    <div class="navbar-links">
+  
+      <a routerLink="/products">
+        Products
+      </a>
+  
+      <a routerLink="/product-management">
+        Product Management
+      </a>
+  
+      <a routerLink="/cart">
+        Cart
+      </a>
+  
+      <a routerLink="/checkout">
+        Checkout
+      </a>
+  
+    </div>
+  
+    <div class="navbar-auth">
+  
+      @if (!isAuthenticated()) {
+  
+        <a routerLink="/login">
+          Login
+        </a>
+  
+      } @else {
+  
+        <button
+          type="button"
+          (click)="logout()">
+  
+          Logout
+  
+        </button>
+  
+      }
+  
+    </div>
+  
+  </nav>

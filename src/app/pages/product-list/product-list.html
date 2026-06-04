@@ -1,0 +1,159 @@
+<!-- <h2>Products</h2>
+
+@if (loading()) {
+<p>Loading products...</p>
+}
+
+@if (error()) {
+<p>{{ error() }}</p>
+}
+
+
+<div class="product-container">
+  @for (product of products(); track product.id) {
+
+  <div class="product-card" [routerLink]="['/products', product.id]">
+    <img [src]="product.thumbnail" [alt]="product.title" loading="lazy" />
+
+    <h3>{{ product.title }}</h3>
+
+    <p>{{ product.description.slice(0, 80) }}...</p>
+
+    <p>
+      <strong>₹ {{ product.price }}</strong>
+    </p>
+
+  </div>
+
+  }
+</div> -->
+
+<!-- <div class="min-h-screen
+         bg-gradient-to-br
+         from-sky-50
+         to-[oklch(0.4_0.06_270.99)]">
+
+  <h2 class="text-3xl font-bold mb-6">
+    Products
+  </h2> -->
+
+<div class="min-h-screen
+         bg-gradient-to-br
+         from-sky-50
+         to-[oklch(0.4_0.06_270.99)]">
+
+  <div class="
+      max-w-[1400px]
+      mx-auto
+      px-6
+      py-8
+    ">
+
+    <div class="mb-10">
+
+      <h2 class="
+          text-4xl
+          font-extrabold
+          text-black
+        ">
+        Products
+      </h2>
+
+
+      @if (loading()) {
+      <p class="text-center text-gray-500">
+        Loading products...
+      </p>
+      }
+
+      @if (error()) {
+      <p class="text-red-500 text-center">
+        {{ error() }}
+      </p>
+      }
+
+      <div class="
+    grid
+    grid-cols-1
+    sm:grid-cols-2
+    md:grid-cols-3
+    lg:grid-cols-3
+    xl:grid-cols-4
+    gap-6
+  ">
+
+        @for (product of products(); track product.id) {
+
+        <div class="
+      bg-gradient-to-b
+      from-white
+      to-blue-50
+      rounded-2xl
+      shadow-lg
+      hover:shadow-2xl
+      hover:-translate-y-2
+      transition-all
+      duration-300
+      cursor-pointer
+      overflow-hidden
+      border
+      border-blue-100
+      flex
+      flex-col
+      h-full
+    " [routerLink]="['/products', product.id]">
+
+          <img [src]="product.thumbnail" [alt]="product.title" loading="lazy" class="w-full h-56 object-cover">
+
+          <div class="p-4 flex flex-col flex-grow">
+
+            <h3 class="
+    font-bold
+    text-lg
+    text-slate-800
+    mb-2
+    line-clamp-2
+    min-h-[56px]
+  ">
+              {{ product.title }}
+            </h3>
+
+            <p class="
+    text-gray-500
+    text-sm
+    mb-4
+    h-16
+    overflow-hidden
+  ">
+              {{ product.description.slice(0, 80) }}...
+            </p>
+
+            <p class="
+    text-2xl
+    font-extrabold
+    text-emerald-600
+  ">
+              ₹ {{ product.price }}
+            </p>
+            <button class="
+    mt-auto
+    w-full
+    bg-blue-600
+    text-white
+    py-2
+    rounded-lg
+    hover:bg-blue-700
+    transition
+  ">
+              View Details
+            </button>
+
+          </div>
+
+        </div>
+
+        }
+
+      </div>
+
+    </div>

@@ -1,0 +1,122 @@
+<!-- <h2>Add Product</h2>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label>Title</label>
+        <input type="text" formControlName="title">
+    </div>
+    <br>
+    <div>
+        <label>Price</label>
+        <input type="number" formControlName="price">
+    </div>
+    <br>
+    <div>
+        <label> Category</label>
+        <input type="text" formControlName="category">
+    </div>
+    <br>
+    <button type="submit"> Save Product</button>
+
+</form> -->
+
+<div class="product-form-page">
+
+    <div class="form-container">
+
+        <!-- <h1>
+        {{ editingProductId ? 'Edit Product' : 'Add Product' }}
+      </h1> -->
+        <h1 class="form-title">
+            {{
+            editingProductId
+            ? 'Edit Product'
+            : 'Add Product'
+            }}
+        </h1>
+
+        <p>
+            {{
+            editingProductId
+            ? 'Update product information'
+            : 'Create a new product'
+            }}
+        </p>
+
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+
+                <label>
+                    Product Title
+                </label>
+
+                <input type="text" formControlName="title">
+                @if (
+                productForm.controls.title.touched &&
+                productForm.controls.title.invalid
+                ) {
+
+                <small class="error">
+                    Title is required
+                </small>
+
+                }
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Price
+                </label>
+
+                <input type="number" formControlName="price">
+                @if (
+                productForm.controls.price.touched &&
+                productForm.controls.price.invalid
+                ) {
+
+                <small class="error">
+                    Price is required
+                </small>
+
+                }
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <input type="text" formControlName="category">
+                @if (
+                productForm.controls.category.touched &&
+                productForm.controls.category.invalid
+                ) {
+
+                <small class="error">
+                    Category is required
+                </small>
+
+                }
+
+            </div>
+
+            <button type="submit" class="save-btn">
+
+                {{
+                editingProductId
+                ? 'Update Product'
+                : 'Save Product'
+                }}
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

@@ -12,7 +12,6 @@ import { ProductService } from '../../services/product/product.service';
   styleUrl: './product-list.scss',
 })
 export class ProductList implements OnInit {
-
   private productService = inject(ProductService);
 
   products = signal<Product[]>([]);
@@ -30,16 +29,14 @@ export class ProductList implements OnInit {
 
     this.productService.getProducts().subscribe({
       next: (response) => {
-
         this.products.set(response.products);
         this.productService.setProducts(response.products);
         this.loading.set(false);
-      
       },
       error: () => {
         this.error.set('Failed to load products');
         this.loading.set(false);
-      }
+      },
     });
   }
 }

@@ -11,15 +11,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [
-    CommonModule,
-    MatCardModule
-  ],
+  imports: [CommonModule, MatCardModule],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.scss',
 })
 export class ProductDetail implements OnInit {
-
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
   private cartService = inject(CartService);
@@ -34,10 +30,7 @@ export class ProductDetail implements OnInit {
   }
 
   loadProduct(): void {
-
-    const id = Number(
-      this.route.snapshot.paramMap.get('id')
-    );
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
     this.loading.set(true);
 
@@ -49,18 +42,17 @@ export class ProductDetail implements OnInit {
       error: () => {
         this.error.set('Failed to load product');
         this.loading.set(false);
-      }
+      },
     });
   }
 
   addToCart(): void {
-
     const product = this.product();
-  
+
     if (!product) {
       return;
     }
-  
+
     this.cartService.addToCart(product);
 
     this.router.navigate(['/cart']);

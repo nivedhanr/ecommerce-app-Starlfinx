@@ -9,37 +9,25 @@ import { Navbar } from './shared/navbar/navbar';
   standalone: true,
   imports: [RouterOutlet, Navbar],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App implements OnInit{
-  
+export class App implements OnInit {
   protected readonly title = signal('ecommerce-app');
   private store = inject(Store);
 
   ngOnInit(): void {
+    const userData = localStorage.getItem('user');
 
-    const userData =
-      localStorage.getItem(
-        'user'
-      );
-  
     if (!userData) {
       return;
     }
-  
-    const user =
-      JSON.parse(userData);
-      console.log(
-        'Auto Login User:',
-        user
-       );
+
+    const user = JSON.parse(userData);
+    console.log('Auto Login User:', user);
     this.store.dispatch(
-  
       AuthActions.autoLogin({
-        user
-      })
-  
+        user,
+      }),
     );
-  
   }
 }

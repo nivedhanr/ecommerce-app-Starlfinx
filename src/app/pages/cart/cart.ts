@@ -13,35 +13,27 @@ import { CartService } from '../../services/cart/cart.service';
   styleUrl: './cart.scss',
 })
 export class Cart implements OnInit {
-
   private cartService = inject(CartService);
   private router = inject(Router);
 
   cartItems = signal<CartItem[]>([]);
 
   ngOnInit(): void {
-    this.cartService.cartItems$.subscribe(items => {
+    this.cartService.cartItems$.subscribe((items) => {
       this.cartItems.set(items);
     });
   }
 
   increaseQuantity(productId: number, currentQuantity: number): void {
-    this.cartService.updateQuantity(
-      productId,
-      currentQuantity + 1
-    );
+    this.cartService.updateQuantity(productId, currentQuantity + 1);
   }
 
   decreaseQuantity(productId: number, currentQuantity: number): void {
-
     if (currentQuantity <= 1) {
       return;
     }
 
-    this.cartService.updateQuantity(
-      productId,
-      currentQuantity - 1
-    );
+    this.cartService.updateQuantity(productId, currentQuantity - 1);
   }
 
   removeItem(productId: number): void {
@@ -51,11 +43,11 @@ export class Cart implements OnInit {
   subtotal(): number {
     return this.cartService.getSubtotal();
   }
-  
+
   tax(): number {
     return this.cartService.getTax();
   }
-  
+
   total(): number {
     return this.cartService.getTotal();
   }

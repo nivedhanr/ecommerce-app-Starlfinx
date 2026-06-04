@@ -11,64 +11,41 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login implements OnInit {
-
   private fb = inject(FormBuilder);
   private store = inject(Store);
   private router = inject(Router);
 
-  loginForm =
-    this.fb.group({
-      username: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(4)]]
-    });
+  loginForm = this.fb.group({
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(4)]],
+  });
 
   loading = signal(false);
 
   error = signal('');
 
   ngOnInit(): void {
+    this.store.select(selectAuthLoading).subscribe((loading) => {
+      this.loading.set(loading);
+    });
 
-    this.store
-      .select(selectAuthLoading)
-      .subscribe(loading => {
+    this.store.select(selectAuthError).subscribe((error) => {
+      this.error.set(error ?? '');
+    });
 
-        this.loading.set(
-          loading
-        );
-
-      });
-
-    this.store
-      .select(selectAuthError)
-      .subscribe(error => {
-
-        this.error.set(
-          error ?? ''
-        );
-
-      });
-
-    this.store
-      .select(selectUser)
-      .subscribe(user => {
-        if (user) {
-          this.router.navigate(['/products']);
-        }
-
-      });
+    this.store.select(selectUser).subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/products']);
+      }
+    });
   }
 
   onSubmit(): void {
-
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -76,12 +53,11 @@ export class Login implements OnInit {
 
     const { username, password } = this.loginForm.getRawValue();
 
-    this.store.dispatch(AuthActions.login({
-      username: username ?? '',
-      password: password ?? ''
-    })
+    this.store.dispatch(
+      AuthActions.login({
+        username: username ?? '',
+        password: password ?? '',
+      }),
     );
-
   }
-
 }

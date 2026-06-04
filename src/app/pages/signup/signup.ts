@@ -1,10 +1,10 @@
-import { Component, inject  } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormBuilder,
   ReactiveFormsModule,
   Validators,
   AbstractControl,
-  ValidationErrors
+  ValidationErrors,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -14,16 +14,11 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterLink
-  ],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './signup.html',
   styleUrl: './signup.scss',
 })
-export class Signup{
-
+export class Signup {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
@@ -34,110 +29,69 @@ export class Signup{
 
   signupForm = this.fb.group(
     {
-      name: [
-        '',
-        Validators.required
-      ],
+      name: ['', Validators.required],
 
-      password: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(4)
-        ]
-      ],
+      password: ['', [Validators.required, Validators.minLength(4)]],
 
-      confirmPassword: [
-        '',
-        Validators.required
-      ]
+      confirmPassword: ['', Validators.required],
     },
     {
-      validators: this.passwordMatchValidator
-    }
+      validators: this.passwordMatchValidator,
+    },
   );
 
-  passwordMatchValidator(
-    control: AbstractControl
-  ): ValidationErrors | null {
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = control.get('password')?.value;
 
-    const password =
-      control.get('password')?.value;
-
-    const confirmPassword =
-      control.get('confirmPassword')?.value;
+    const confirmPassword = control.get('confirmPassword')?.value;
 
     return password === confirmPassword
       ? null
       : {
-        passwordMismatch: true
-      };
-
+          passwordMismatch: true,
+        };
   }
 
   onSubmit(): void {
-
     if (this.signupForm.invalid) {
-
       this.signupForm.markAllAsTouched();
 
       return;
-
     }
 
     this.loading = true;
 
-    const formValue =
-      this.signupForm.getRawValue();
+    const formValue = this.signupForm.getRawValue();
 
-      const signupPayload = {
-        firstName: formValue.name ?? '',
-        password: formValue.password ?? ''
-      };
+    const signupPayload = {
+      firstName: formValue.name ?? '',
+      password: formValue.password ?? '',
+    };
 
-    this.authService
-      .signup(signupPayload)
-      .subscribe({
+    this.authService.signup(signupPayload).subscribe({
+      next: (response) => {
+        console.log('Signup Success', response);
 
-        next: (response) => {
+        this.loading = false;
 
-          console.log(
-            'Signup Success',
-            response
-          );
+        this.successMessage = 'Account created successfully';
 
-          this.loading = false;
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 1500);
+      },
 
-          this.successMessage =
-            'Account created successfully';
+      error: (error) => {
+        console.error(error);
 
-          setTimeout(() => {
+        this.loading = false;
 
-            this.router.navigate(
-              ['/login']
-            );
-
-          }, 1500);
-
-        },
-
-        error: (error) => {
-
-          console.error(error);
-
-          this.loading = false;
-
-          this.errorMessage =
-            'Signup failed';
-
-        }
-
-      });
-
+        this.errorMessage = 'Signup failed';
+      },
+    });
   }
 
   // ngOnDestroy(): void {
   //   console.log('Signup Destroyed');
   // }
-
 }

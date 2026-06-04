@@ -6,14 +6,11 @@ import { ProductService } from '../../services/product/product.service';
 @Component({
   selector: 'app-product-form',
   standalone: true,
-  imports: [
-    ReactiveFormsModule
-  ],
+  imports: [ReactiveFormsModule],
   templateUrl: './product-form.html',
   styleUrl: './product-form.scss',
 })
 export class ProductForm implements OnInit {
-
   private fb = inject(FormBuilder);
   private productService = inject(ProductService);
   private router = inject(Router);
@@ -22,13 +19,12 @@ export class ProductForm implements OnInit {
   productForm = this.fb.group({
     title: ['', Validators.required],
     price: [0, Validators.required],
-    category: ['', Validators.required]
+    category: ['', Validators.required],
   });
 
   editingProductId: number | null = null;
 
   ngOnInit(): void {
-
     const id = this.route.snapshot.paramMap.get('id');
 
     if (!id) {
@@ -37,17 +33,15 @@ export class ProductForm implements OnInit {
 
     this.editingProductId = Number(id);
 
-    this.productService.getProduct(this.editingProductId).subscribe(product => {
-
+    this.productService.getProduct(this.editingProductId).subscribe((product) => {
       this.productForm.patchValue({
         title: product.title,
         price: product.price,
-        category: product.category
+        category: product.category,
       });
 
       if (this.productService.products().length === 0) {
-
-        this.productService.getProducts().subscribe(response => {
+        this.productService.getProducts().subscribe((response) => {
           this.productService.setProducts(response.products);
         });
       }
@@ -55,7 +49,6 @@ export class ProductForm implements OnInit {
   }
 
   onSubmit(): void {
-
     if (this.productForm.invalid) {
       return;
     }
@@ -72,7 +65,7 @@ export class ProductForm implements OnInit {
         thumbnail: '',
         images: [],
         rating: 0,
-        stock: 0
+        stock: 0,
       });
     } else {
       this.productService.addProduct({
@@ -84,12 +77,10 @@ export class ProductForm implements OnInit {
         thumbnail: '',
         images: [],
         rating: 0,
-        stock: 0
+        stock: 0,
       });
     }
 
     this.router.navigate(['/product-management']);
-
   }
-
 }

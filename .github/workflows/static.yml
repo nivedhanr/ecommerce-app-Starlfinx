@@ -31,13 +31,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular
+        run: ng build --configuration production --base-href "/ecommerce-app-Starlfinx/"
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: 'src/'
+          path: './dist/ecommerce-app'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5

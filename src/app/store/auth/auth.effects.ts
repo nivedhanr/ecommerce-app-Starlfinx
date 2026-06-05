@@ -28,7 +28,8 @@ export class AuthEffects {
           catchError((error) =>
             of(
               AuthActions.loginFailure({
-                error: error.message,
+                // error: error.message,
+                error: 'Invalid username or password',
               }),
             ),
           ),
@@ -44,7 +45,7 @@ export class AuthEffects {
       switchMap(() => {
         console.log('Auto logout timer started');
 
-        return timer(10000).pipe(
+        return timer(50000).pipe(
           map(() => {
             console.log('Auto Logout Triggered');
 

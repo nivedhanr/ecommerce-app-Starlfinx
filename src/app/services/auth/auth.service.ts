@@ -16,7 +16,7 @@ export class AuthService {
     });
   }
 
-  signup(user: { firstName: string; password: string }) {
+  signup(user: { firstName: string; email: string; password: string }) {
     return this.http.post('https://dummyjson.com/users/add', user);
   }
 }

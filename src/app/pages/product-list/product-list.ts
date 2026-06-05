@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -17,17 +18,16 @@ export class ProductList implements OnInit {
   products = signal<Product[]>([]);
   loading = signal(false);
   error = signal('');
+  private productSubscription?: Subscription;
 
   ngOnInit(): void {
     this.loadProducts();
   }
 
   loadProducts(): void {
-    console.time('API Call');
-
     this.loading.set(true);
 
-    this.productService.getProducts().subscribe({
+    this.productSubscription = this.productService.getProducts().subscribe({
       next: (response) => {
         this.products.set(response.products);
         this.productService.setProducts(response.products);
@@ -38,5 +38,9 @@ export class ProductList implements OnInit {
         this.loading.set(false);
       },
     });
+  }
+  
+  ngOnDestroy(): void {
+    this.productSubscription?.unsubscribe();
   }
 }

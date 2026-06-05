@@ -31,6 +31,8 @@ export class Signup {
     {
       name: ['', Validators.required],
 
+      emailId: ['', [Validators.required, this.emailValidator]],
+
       password: ['', [Validators.required, Validators.minLength(4)]],
 
       confirmPassword: ['', Validators.required],
@@ -39,6 +41,18 @@ export class Signup {
       validators: this.passwordMatchValidator,
     },
   );
+
+  emailValidator(control: AbstractControl): ValidationErrors | null {
+  
+    const email = control.value;
+    if (!email) {
+      return null;
+    }
+
+    const emailPattern =/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  
+    return emailPattern.test(email)? null : { invalidEmail: true };
+  }
 
   passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password')?.value;
@@ -65,6 +79,7 @@ export class Signup {
 
     const signupPayload = {
       firstName: formValue.name ?? '',
+      email: formValue.emailId ?? '',
       password: formValue.password ?? '',
     };
 
@@ -91,7 +106,4 @@ export class Signup {
     });
   }
 
-  // ngOnDestroy(): void {
-  //   console.log('Signup Destroyed');
-  // }
 }

@@ -1,25 +1,31 @@
 <nav class="navbar">
   <div class="navbar-logo">
+    <button class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </button>
     <span class="logo-icon"> 🛒 </span>
 
     <span class="logo-text"> Starlfinx Store </span>
   </div>
 
-  <div class="navbar-links">
-    <a routerLink="/products"> Products </a>
+  <div class="navbar-content" [class.mobile-open]="mobileMenuOpen()">
 
-    <a routerLink="/product-management"> Product Management </a>
+    <div class="navbar-links">
+      <a routerLink="/products" (click)="closeMenu()"> Products </a>
 
-    <a routerLink="/cart"> Cart </a>
+      <a routerLink="/product-management" (click)="closeMenu()"> Product Management </a>
 
-    <a routerLink="/checkout"> Checkout </a>
-  </div>
+      <a routerLink="/cart" (click)="closeMenu()"> Cart </a>
 
-  <div class="navbar-auth">
-    @if (!isAuthenticated()) {
+      <a routerLink="/checkout" (click)="closeMenu()"> Checkout </a>
+    </div>
+
+    <div class="navbar-auth">
+      @if (!isAuthenticated()) {
       <a routerLink="/login"> Login </a>
-    } @else {
+      } @else {
       <button type="button" (click)="logout()">Logout</button>
-    }
+      }
+    </div>
   </div>
 </nav>

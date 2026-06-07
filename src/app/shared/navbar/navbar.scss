@@ -14,6 +14,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
 .navbar-logo {
@@ -73,4 +74,60 @@
 .navbar-auth a:hover,
 .navbar-auth button:hover {
   background: #e0e7ff;
+}
+
+.menu-toggle {
+  display: none;
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar-content {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .navbar-content.mobile-open {
+    display: flex;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .navbar-auth {
+    width: 100%;
+  }
+
+  .navbar-auth a,
+  .navbar-auth button {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+  .logo-text {
+    font-size: 1.1rem;
+  }
 }

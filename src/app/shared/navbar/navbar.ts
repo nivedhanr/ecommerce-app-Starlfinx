@@ -17,11 +17,16 @@ export class Navbar implements OnInit {
   private router = inject(Router);
 
   isAuthenticated = signal(false);
+  mobileMenuOpen = signal(false);
 
   ngOnInit(): void {
     this.store.select(selectIsAuthenticated).subscribe((isAuth) => {
       this.isAuthenticated.set(isAuth);
     });
+  }
+
+  toggleMenu(): void {
+    this.mobileMenuOpen.update(value => !value);
   }
 
   logout(): void {
@@ -31,4 +36,9 @@ export class Navbar implements OnInit {
 
     this.router.navigate(['/login']);
   }
+
+  closeMenu(): void {
+    this.mobileMenuOpen.set(false);
+  }
 }
+

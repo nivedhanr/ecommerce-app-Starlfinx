@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product/product.service';
 import { Subscription } from 'rxjs';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MatProgressSpinnerModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.scss',
 })

@@ -1,10 +1,9 @@
 <div class="min-h-screen bg-gradient-to-br from-sky-50 to-[oklch(0.4_0.06_270.99)]">
   <div class="max-w-[1400px] mx-auto px-6 py-8">
     <div class="mb-10">
-      <h2 class="text-4xl font-extrabold text-black">Products</h2>
-
+      <h2 class="text-4xl font-extrabold text-black mb-4">Products</h2>
       @if (loading()) {
-        <p class="text-center text-gray-500">Loading products...</p>
+        <mat-spinner></mat-spinner>
       }
 
       @if (error()) {

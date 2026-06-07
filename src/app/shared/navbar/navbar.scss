@@ -14,7 +14,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  flex-wrap: wrap;
+ 
 }
 
 .navbar-logo {
@@ -93,6 +93,13 @@
 }
 
 @media (max-width: 768px) {
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
 
   .menu-toggle {
     display: block;

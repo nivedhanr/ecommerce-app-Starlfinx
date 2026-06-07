@@ -2,6 +2,7 @@ import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { CouponService } from '../../services/coupon/coupon.service';
 import { CartService } from '../../services/cart/cart.service';
 import { CartItem } from '../../models/cart-item.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -12,6 +13,7 @@ import { CartItem } from '../../models/cart-item.model';
 export class Checkout implements OnInit {
   private cartService = inject(CartService);
   private couponService = inject(CouponService);
+  private router = inject(Router);
 
   cartItems = signal<CartItem[]>([]);
 
@@ -50,5 +52,11 @@ export class Checkout implements OnInit {
     this.discount.set(coupon.discount);
 
     this.couponMessage.set(`${coupon.code} applied successfully!`);
+  }
+
+  onPlaceOrder(): void {
+    alert('Your order has been placed successfully!');
+    this.cartService.clearCart();
+    this.router.navigate(['/products']);
   }
 }

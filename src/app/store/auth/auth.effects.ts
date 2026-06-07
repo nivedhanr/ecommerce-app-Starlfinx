@@ -45,7 +45,7 @@ export class AuthEffects {
       switchMap(() => {
         console.log('Auto logout timer started');
 
-        return timer(50000).pipe(
+        return timer(120000).pipe(
           map(() => {
             console.log('Auto Logout Triggered');
 

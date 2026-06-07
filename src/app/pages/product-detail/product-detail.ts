@@ -6,11 +6,12 @@ import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product/product.service';
 import { CartService } from '../../services/cart/cart.service';
 import { Router } from '@angular/router';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule, MatProgressSpinnerModule],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.scss',
 })
